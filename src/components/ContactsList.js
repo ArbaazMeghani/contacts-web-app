@@ -14,7 +14,15 @@ export default class ContactsList extends React.Component {
     render() {
         return (
             <div>
-                Hello World
+                {
+                    this.state.contacts.map(contact => (
+                        <div>
+                            <h2> {contact.firstname} {contact.lastname} </h2>
+                            <h3> {contact.number} </h3>
+                            <br />
+                        </div>
+                    ))
+                }
             </div>
         )
     }
