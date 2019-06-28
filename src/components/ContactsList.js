@@ -1,34 +1,50 @@
 import React from 'react';
-import axios from 'axios';
+import Axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 export default class ContactsList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {contacts: []};
-    }
+  constructor(props) {
+    super(props);
+    this.state = {contacts: []};
+  }
 
-    async componentDidMount() {
-        let res = await axios.get("https://contacts-rest-api.herokuapp.com/api/v1/contacts")
-        this.setState({contacts: res.data});
-    }
+  async componentDidMount() {
+    let res = await Axios.get("https://contacts-rest-api.herokuapp.com/api/v1/contacts")
+    this.setState({contacts: res.data});
+  }
 
-    singleContactHandler(contact) {
-        console.log(contact.firstname);
-    }
+  singleContactHandler(contact) {
+    console.log(contact.firstname);
+  }
 
-    render() {
-        return (
-            <div>
-                {
-                    this.state.contacts.map(contact => (
-                        <div onClick={() => this.singleContactHandler(contact)} key={contact._id}>
-                            <h2> {contact.firstname} {contact.lastname} </h2>
-                            <h3> {contact.number} </h3>
-                            <br />
-                        </div>
-                    ))
-                }
-            </div>
-        )
-    }
+  render() {
+      return (
+        <div>
+          {
+            this.state.contacts.map(contact => (
+              <div key={contact._id}>
+                <Card>
+                  <CardActionArea onClick={() => this.singleContactHandler(contact)}>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2"> 
+                        {contact.firstname} {contact.lastname}
+                      </Typography>
+
+                      <Typography variant="body2" color="textSecondary" component="p">
+                        Phone: {contact.number}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+                  <br />
+              </div>
+            ))
+          }
+        </div>
+    )
+  }
 }
