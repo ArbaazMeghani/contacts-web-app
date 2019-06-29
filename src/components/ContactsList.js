@@ -1,12 +1,19 @@
 import React from 'react';
 import Axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-export default class ContactsList extends React.Component {
+const styles = {
+  Card: {
+    maxWidth: 245
+  },
+};
+
+class ContactsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {contacts: []};
@@ -22,29 +29,36 @@ export default class ContactsList extends React.Component {
   }
 
   render() {
-      return (
-        <div>
-          {
-            this.state.contacts.map(contact => (
-              <div key={contact._id}>
-                <Card>
-                  <CardActionArea onClick={() => this.singleContactHandler(contact)}>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2"> 
-                        {contact.firstname} {contact.lastname}
-                      </Typography>
+    const { classes } = this.props;
+    return (
+      <div>
+        {
+          this.state.contacts.map(contact => (
+            <div key={contact._id}>
+              <Card className={classes.Card}>
+                <CardActionArea onClick={() => this.singleContactHandler(contact)}>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2"> 
+                      {contact.firstname} {contact.lastname}
+                    </Typography>
 
-                      <Typography variant="body2" color="textSecondary" component="p">
-                        Phone: {contact.number}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-                  <br />
-              </div>
-            ))
-          }
-        </div>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      Phone: {contact.number}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+              <br />
+            </div>
+          ))
+        }
+      </div>
     )
   }
 }
+
+ContactsList.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(ContactsList);
