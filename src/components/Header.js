@@ -1,17 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
-
-const styles = makeStyles({
-    Header: {
-        textAlign: "center"
-    }
-});
+import Typography from '@material-ui/core/Typography';
 
 function Header() {
-    let classes = makeStyles(styles);
     return (
-        <header className={classes.Header}>
-
+        <header>
+            <Typography align="center" variant="h6"> Contacts List Application </Typography>
+            <br />
         </header>
     );
 }
