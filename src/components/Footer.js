@@ -20,7 +20,7 @@ function Footer({author, source}) {
             </TableCell>
             <TableCell>
               <Typography align="right">
-                <a href={source} target="_blank">Source Code</a>
+                <a href={source} rel="noopener noreferrer" target="_blank">Source Code</a>
               </Typography>
             </TableCell>
           </TableRow>
