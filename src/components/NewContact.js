@@ -16,6 +16,13 @@ const styles = {
 };
 
 class NewContact extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isToggled: 0
+    };
+  }
+
   render() {
     const { classes } = this.props;
     return (
