@@ -29,7 +29,7 @@ class NewContact extends React.Component {
     }));
   }
 
-  render() {
+  fabIcon() {
     const { classes } = this.props;
     return (
       <div>
@@ -38,6 +38,22 @@ class NewContact extends React.Component {
         </Fab>
       </div>
     );
+  }
+
+  render() {
+    let result;
+    if(!this.state.isToggled) {
+      result = this.fabIcon();
+    }
+    else {
+      result = (
+        <h1>
+          Temporary Return
+        </h1>
+      );
+    }
+
+    return result;
   }
 }
 
