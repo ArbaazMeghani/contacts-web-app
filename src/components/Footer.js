@@ -10,8 +10,8 @@ const styles = {
   root: {
     margin: 0,
     top: 'auto',
-    right: 20,
-    bottom: 20,
+    right: 0,
+    bottom: 0,
     left: 0,
     position: 'fixed',
   }
