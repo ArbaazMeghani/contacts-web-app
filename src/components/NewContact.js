@@ -19,15 +19,21 @@ class NewContact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isToggled: 0
+      isToggled: false
     };
+  }
+
+  toggleDialog() {
+    this.setState(prevState => ({
+      isToggled: !prevState.isToggled
+    }));
   }
 
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <Fab color="primary" aria-label="Add" className={classes.fab}>
+        <Fab color="primary" aria-label="Add" onClick={() => this.toggleDialog()} className={classes.fab}>
           <AddIcon />
         </Fab>
       </div>
