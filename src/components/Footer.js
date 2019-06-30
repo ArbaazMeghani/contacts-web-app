@@ -6,9 +6,20 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
+const styles = {
+  root: {
+    margin: 0,
+    top: 'auto',
+    right: 20,
+    bottom: 20,
+    left: 0,
+    position: 'fixed',
+  }
+};
+
 function Footer({author, source}) {
   return (
-    <footer>
+    <footer style={styles.root}>
       <Divider />
       <Table>
         <TableBody>
