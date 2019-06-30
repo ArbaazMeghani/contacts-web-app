@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Header title="Contacts List Application" />
       <ContactsList />
-      <Footer />
+      <Footer author="Arbaaz Meghani" source="https://github.com/ArbaazMeghani/contacts-web-app"/>
     </div>
   );
 }
