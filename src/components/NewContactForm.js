@@ -7,6 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import TextField from '@material-ui/core/TextField';
 
 const styles = {
 
@@ -20,7 +21,22 @@ class NewContactForm extends React.Component {
         <DialogTitle id="simple-dialog-title"> Create a New Contact </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Sample Return
+          <TextField
+            id="standard-name"
+            label="First Name"
+            margin="normal"
+          />
+          <TextField
+            id="standard-name"
+            label="Last Name"
+            margin="normal"
+          />
+          <TextField
+            required
+            id="standard-required"
+            label="Phone Number"
+            margin="normal"
+          />
           </DialogContentText>
         </DialogContent>
 
