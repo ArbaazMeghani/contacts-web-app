@@ -44,6 +44,10 @@ class NewContactForm extends React.Component {
           <Button onClick={() => this.props.onClose()}>
             Cancel
           </Button>
+
+          <Button>
+            Submit
+          </Button>
         </DialogActions>
       </Dialog>
     );
