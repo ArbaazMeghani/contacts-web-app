@@ -1,5 +1,6 @@
 import React from 'react';
 import NewContactFab from './NewContactFab';
+import NewContactForm from './NewContactForm';
 
 export default class NewContact extends React.Component {
   constructor(props) {
@@ -20,6 +21,9 @@ export default class NewContact extends React.Component {
   render() {
     let result = [];
     result.push(<NewContactFab onClickHandler={this.toggleDialog} />);
+    if(this.state.isToggled) {
+      result.push(<NewContactForm />);
+    }
     return result;
   }
 }
