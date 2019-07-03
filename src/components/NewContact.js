@@ -18,8 +18,8 @@ export default class NewContact extends React.Component {
   }
 
   render() {
-    let result;
-    result = <NewContactFab onClickHandler={this.toggleDialog} />;
+    let result = [];
+    result.push(<NewContactFab onClickHandler={this.toggleDialog} />);
     return result;
   }
 }
