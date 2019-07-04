@@ -5,6 +5,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   root: {
@@ -31,7 +32,7 @@ function Footer({author, source}) {
             </TableCell>
             <TableCell>
               <Typography align="right">
-                <a href={source} rel="noopener noreferrer" target="_blank">Source Code</a>
+                <Button onClick={() => window.open(source, '_blank')} >Source Code</Button>
               </Typography>
             </TableCell>
           </TableRow>
