@@ -13,6 +13,12 @@ const styles = {
 };
 
 class NewContactForm extends React.Component {
+
+  submitNewContactHandler() {
+    console.log("Submitted Contact");
+    this.props.onClose();
+  }
+
   render() {
     this.classes = withStyles(styles);
     return (
@@ -42,7 +48,7 @@ class NewContactForm extends React.Component {
             Cancel
           </Button>
 
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={() => this.submitNewContactHandler()}>
             Submit
           </Button>
         </DialogActions>

@@ -20,8 +20,8 @@ export default class NewContact extends React.Component {
 
   render() {
     let result = [];
-    result.push(<NewContactFab onClickHandler={this.toggleDialog} />);
-    result.push(<NewContactForm open={this.state.isToggled} onClose={this.toggleDialog}/>);
+    result.push(<NewContactFab onClickHandler={this.toggleDialog} key="fab"/>);
+    result.push(<NewContactForm open={this.state.isToggled} onClose={this.toggleDialog} key="form"/>);
     return result;
   }
 }
