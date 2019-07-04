@@ -41,11 +41,11 @@ class NewContactForm extends React.Component {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={() => this.props.onClose()}>
+          <Button variant="outlined" color="secondary" onClick={() => this.props.onClose()}>
             Cancel
           </Button>
 
-          <Button>
+          <Button variant="contained" color="primary">
             Submit
           </Button>
         </DialogActions>
