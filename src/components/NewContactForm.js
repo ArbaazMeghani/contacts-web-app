@@ -9,7 +9,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 
 const styles = {
-
+  textfield: {
+    margin: 10
+  }
 };
 
 class NewContactForm extends React.Component {
@@ -20,38 +22,43 @@ class NewContactForm extends React.Component {
   }
 
   render() {
-    this.classes = withStyles(styles);
+    const { classes } = this.props;
     return (
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
         <DialogTitle id="simple-dialog-title"> Create a New Contact </DialogTitle>
-        <DialogContent>
-          <TextField
-            id="standard-name"
-            label="First Name"
-            margin="normal"
-          />
-          <TextField
-            id="standard-name"
-            label="Last Name"
-            margin="normal"
-          />
-          <TextField
-            required
-            id="standard-required"
-            label="Phone Number"
-            margin="normal"
-          />
-        </DialogContent>
+        <form onSubmit={() => this.submitNewContactHandler()}>
+          <DialogContent>
+            <TextField
+              id="standard-name"
+              label="First Name"
+              margin="normal"
+              className={classes.textfield}
+            />
+            <TextField
+              id="standard-name"
+              label="Last Name"
+              margin="normal"
+              className={classes.textfield}
+            />
+            <TextField
+              required
+              id="standard-required"
+              label="Phone Number"
+              margin="normal"
+              className={classes.textfield}
+            />
+          </DialogContent>
 
-        <DialogActions>
-          <Button variant="outlined" color="secondary" onClick={() => this.props.onClose()}>
-            Cancel
-          </Button>
+          <DialogActions>
+            <Button variant="outlined" color="secondary" onClick={() => this.props.onClose()}>
+              Cancel
+            </Button>
 
-          <Button variant="contained" color="primary" onClick={() => this.submitNewContactHandler()}>
-            Submit
-          </Button>
-        </DialogActions>
+            <Button variant="contained" color="primary" type="submit">
+              Submit
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     );
   }
