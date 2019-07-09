@@ -9,7 +9,7 @@ const styles = makeStyles({
   }
 });
 
-export default function SingleContact() {
+export default function SingleContact({ contact }) {
   const classes = styles();
   return (
     <DialogContent>
@@ -17,12 +17,14 @@ export default function SingleContact() {
         id="standard-name"
         label="First Name"
         margin="normal"
+        value={contact.firstname}
         className={classes.textfield}
       />
       <TextField
         id="standard-name"
         label="Last Name"
         margin="normal"
+        value={contact.lastname}
         className={classes.textfield}
       />
       <TextField
@@ -30,6 +32,7 @@ export default function SingleContact() {
         id="standard-required"
         label="Phone Number"
         margin="normal"
+        value={contact.number}
         className={classes.textfield}
       />
     </DialogContent>

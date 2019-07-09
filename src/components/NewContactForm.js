@@ -6,7 +6,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import SingleContact from './SingleContact';
 
 export default class NewContactForm extends React.Component {
-
   submitNewContactHandler() {
     console.log("Submitted Contact");
     this.props.onClose();
@@ -17,7 +16,7 @@ export default class NewContactForm extends React.Component {
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
         <DialogTitle id="simple-dialog-title"> Create a New Contact </DialogTitle>
         <form onSubmit={() => this.submitNewContactHandler()}>
-          <SingleContact />
+          <SingleContact contact={{}}/>
           <DialogActions>
             <Button variant="outlined" color="secondary" onClick={() => this.props.onClose()}>
               Cancel
