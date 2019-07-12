@@ -37,7 +37,12 @@ export default class ContactsList extends React.Component {
   render() {
     let result = [];
     result.push(<AllContacts contacts={this.state.contacts} singleContactHandler={this.singleContactHandler} key="list" />);
-    result.push(<ViewSingleContact contact={this.state.currentContact} open={this.state.isToggled} key="contact"/>); 
+    result.push(<ViewSingleContact 
+      contact={this.state.currentContact}
+      open={this.state.isToggled}
+      onClose={this.toggleDialog}
+      key="contact"
+      />); 
     return result;
   }
 }
