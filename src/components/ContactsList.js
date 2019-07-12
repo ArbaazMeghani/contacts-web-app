@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import AllContacts from './AllContacts';
+import ViewSingleContact from './ViewSingleContact';
 
 export default class ContactsList extends React.Component {
   constructor(props) {
@@ -35,7 +36,8 @@ export default class ContactsList extends React.Component {
 
   render() {
     let result = [];
-    result.push(<AllContacts contacts={this.state.contacts} singleContactHandler={this.singleContactHandler} key="list"/>);
+    result.push(<AllContacts contacts={this.state.contacts} singleContactHandler={this.singleContactHandler} key="list" />);
+    result.push(<ViewSingleContact contact={this.state.currentContact} open={this.state.isToggled} key="contact"/>); 
     return result;
   }
 }
