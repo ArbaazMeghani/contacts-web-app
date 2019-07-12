@@ -7,7 +7,7 @@ export default class ViewSingleContact extends React.Component {
     return (
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
         <form>
-          <SingleContact contact={this.props.contact}/>
+          <SingleContact contact={this.props.contact} isDisabled={true}/>
         </form>
       </Dialog>
     );

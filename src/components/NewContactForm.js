@@ -16,7 +16,7 @@ export default class NewContactForm extends React.Component {
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
         <DialogTitle id="simple-dialog-title"> Create a New Contact </DialogTitle>
         <form onSubmit={() => this.submitNewContactHandler()}>
-          <SingleContact contact={{}}/>
+          <SingleContact contact={{}} isDisabled={false}/>
           <DialogActions>
             <Button variant="outlined" color="secondary" onClick={() => this.props.onClose()}>
               Cancel
