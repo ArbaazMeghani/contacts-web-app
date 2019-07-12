@@ -1,22 +1,18 @@
 import React from 'react';
 import Axios from 'axios';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import AllContacts from './AllContacts';
 
-const styles = {
-  Card: {
-    maxWidth: 245
-  },
-};
-
-class ContactsList extends React.Component {
+export default class ContactsList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {contacts: []};
+    this.state = {
+      contacts: [],
+      isToggled: false,
+      currentContact: {}
+    };
+
+    this.toggleDialog = this.toggleDialog.bind(this);
+    this.singleContactHandler = this.singleContactHandler.bind(this);
   }
 
   async componentDidMount() {
@@ -24,41 +20,22 @@ class ContactsList extends React.Component {
     this.setState({contacts: res.data});
   }
 
+  toggleDialog() {
+    this.setState(prevState => ({
+      isToggled: !prevState.isToggled
+    }));
+  }
+
   singleContactHandler(contact) {
-    console.log(contact.firstname);
+    this.setState(() => ({
+      currentContact: contact
+    }));
+    this.toggleDialog();
   }
 
   render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        {
-          this.state.contacts.map(contact => (
-            <div key={contact._id}>
-              <Card className={classes.Card}>
-                <CardActionArea onClick={() => this.singleContactHandler(contact)}>
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2"> 
-                      {contact.firstname} {contact.lastname}
-                    </Typography>
-
-                    <Typography variant="body2" color="textSecondary" component="p">
-                      Phone: {contact.number}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-              <br />
-            </div>
-          ))
-        }
-      </div>
-    )
+    let result = [];
+    result.push(<AllContacts contacts={this.state.contacts} singleContactHandler={this.singleContactHandler} key="list"/>);
+    return result;
   }
 }
-
-ContactsList.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(ContactsList);
