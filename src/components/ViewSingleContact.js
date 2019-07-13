@@ -30,18 +30,44 @@ export default class ViewSingleContact extends React.Component {
     }));
   }
 
+  saveContact() {
+    console.log("Saving Contact");
+    this.closeDialog();
+  }
+
+  editButton() {
+    return (
+      <Fab color="secondary" aria-label="Edit" onClick={() => this.disabledStateUpdate()}>
+            <EditIcon />
+      </Fab>
+    );
+  }
+
+  saveButton() {
+    return (
+      <Button variant="contained" color="primary" type="submit">
+        Save
+      </Button>
+    );
+  }
+
+  formButton() {
+    if(this.state.isDisabled) {
+      return this.editButton();
+    }
+    return this.saveButton();
+  }
+
   render() {
     return (
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
-        <form>
+        <form onSubmit={() => this.saveContact()}>
           <SingleContact contact={this.props.contact} isDisabled={this.state.isDisabled} />
           <DialogActions>
             <Button variant="outlined" color="secondary" onClick={() => this.closeDialog()}>
                 {this.state.canceledText}
             </Button>
-            <Fab color="secondary" aria-label="Edit" onClick={() => this.disabledStateUpdate()}>
-              <EditIcon />
-            </Fab>
+            {this.formButton()}
           </DialogActions>
         </form>
       </Dialog>
