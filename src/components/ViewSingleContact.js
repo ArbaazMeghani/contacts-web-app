@@ -10,13 +10,23 @@ export default class ViewSingleContact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDisabled: true
+      isDisabled: true,
+      canceledText: "Close"
     };
   }
 
   disabledStateUpdate() {
     this.setState(prevState => ({
-      isDisabled: !prevState.isDisabled
+      isDisabled: !prevState.isDisabled,
+      canceledText: "Cancel"
+    }));
+  }
+
+  closeDialog() {
+    this.props.onClose();
+    this.setState(prevState => ({
+      isDisabled: true,
+      canceledText: "Close"
     }));
   }
 
@@ -26,10 +36,10 @@ export default class ViewSingleContact extends React.Component {
         <form>
           <SingleContact contact={this.props.contact} isDisabled={this.state.isDisabled} />
           <DialogActions>
-            <Button variant="outlined" color="secondary" onClick={() => this.props.onClose()}>
-                Close
+            <Button variant="outlined" color="secondary" onClick={() => this.closeDialog()}>
+                {this.state.canceledText}
             </Button>
-            <Fab color="secondary" aria-label="Edit">
+            <Fab color="secondary" aria-label="Edit" onClick={() => this.disabledStateUpdate()}>
               <EditIcon />
             </Fab>
           </DialogActions>
