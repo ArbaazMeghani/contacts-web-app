@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import SingleContact from './SingleContact';
 import { DialogActions } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab';
+import EditIcon from '@material-ui/icons/Edit';
 
 export default class ViewSingleContact extends React.Component {
   constructor(props) {
@@ -27,6 +29,9 @@ export default class ViewSingleContact extends React.Component {
             <Button variant="outlined" color="secondary" onClick={() => this.props.onClose()}>
                 Close
             </Button>
+            <Fab color="secondary" aria-label="Edit">
+              <EditIcon />
+            </Fab>
           </DialogActions>
         </form>
       </Dialog>
