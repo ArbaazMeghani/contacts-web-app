@@ -14,9 +14,9 @@ class SingleContact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: this.props.firstname,
-      lastname: this.props.lastname,
-      number: this.props.number
+      firstname: this.props.contact.firstname,
+      lastname: this.props.contact.lastname,
+      number: this.props.contact.number
     }
   }
 
