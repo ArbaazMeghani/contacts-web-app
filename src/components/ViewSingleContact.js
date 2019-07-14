@@ -11,8 +11,11 @@ export default class ViewSingleContact extends React.Component {
     super(props);
     this.state = {
       isDisabled: true,
-      canceledText: "Close"
+      canceledText: "Close",
+      contact: {}
     };
+
+    this.setContact = this.setContact.bind(this);
   }
 
   disabledStateUpdate() {
@@ -33,6 +36,12 @@ export default class ViewSingleContact extends React.Component {
   saveContact() {
     console.log("Saving Contact");
     this.closeDialog();
+  }
+
+  setContact(newContact) {
+    this.setState(prevState => ({
+      contact: newContact,
+    }));
   }
 
   editButton() {
@@ -62,7 +71,7 @@ export default class ViewSingleContact extends React.Component {
     return (
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
         <form onSubmit={() => this.saveContact()}>
-          <SingleContact contact={this.props.contact} isDisabled={this.state.isDisabled} />
+          <SingleContact contact={this.props.contact} isDisabled={this.state.isDisabled} sendContact={this.setContact}/>
           <DialogActions>
             <Button variant="outlined" color="secondary" onClick={() => this.closeDialog()}>
                 {this.state.canceledText}
