@@ -20,9 +20,9 @@ export default class NewContactForm extends React.Component {
   }
 
   setContact(newContact) {
-    this.setState(prevState => ({
+    this.setState({
       contact: newContact,
-    }));
+    });
   }
 
   render() {

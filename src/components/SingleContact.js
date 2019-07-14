@@ -20,6 +20,24 @@ class SingleContact extends React.Component {
     }
   }
 
+  firstnameUpdateHandler(event) {
+    this.setState({
+      firstname: event.target.value
+    });
+  }
+
+  lastnameUpdateHandler(event) {
+    this.setState({
+      lastname: event.target.value
+    });
+  }
+
+  numberUpdateHandler(event) {
+    this.setState({
+      number: event.target.value
+    });
+  }
+
   render() {
     const { classes } = this.props;
     return (

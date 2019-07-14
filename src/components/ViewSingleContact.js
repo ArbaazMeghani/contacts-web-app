@@ -27,10 +27,10 @@ export default class ViewSingleContact extends React.Component {
 
   closeDialog() {
     this.props.onClose();
-    this.setState(prevState => ({
+    this.setState({
       isDisabled: true,
       canceledText: "Close"
-    }));
+    });
   }
 
   saveContact() {
@@ -39,9 +39,9 @@ export default class ViewSingleContact extends React.Component {
   }
 
   setContact(newContact) {
-    this.setState(prevState => ({
+    this.setState({
       contact: newContact,
-    }));
+    });
   }
 
   editButton() {
