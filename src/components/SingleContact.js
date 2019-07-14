@@ -14,28 +14,55 @@ class SingleContact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: this.props.contact.firstname,
-      lastname: this.props.contact.lastname,
-      number: this.props.contact.number
+      firstname: "",
+      lastname: "",
+      number: ""
     }
+
+    this.firstnameUpdateHandler = this.firstnameUpdateHandler.bind(this);
+    this.lastnameUpdateHandler = this.lastnameUpdateHandler.bind(this);
+    this.numberUpdateHandler = this.numberUpdateHandler.bind(this);
+  }
+
+  createDefaultContact() {
+    let contact = {};
+    contact.firstname = this.state.firstname;
+    contact.lastname = this.state.lastname;
+    contact.number = this.state.number;
+    return contact;
   }
 
   firstnameUpdateHandler(event) {
     this.setState({
       firstname: event.target.value
     });
+
+    let contact = this.createDefaultContact();
+    contact.firstname = event.target.value;
+
+    this.props.sendContact(contact);
   }
 
   lastnameUpdateHandler(event) {
     this.setState({
       lastname: event.target.value
     });
+
+    let contact = this.createDefaultContact();
+    contact.lastname = event.target.value;
+
+    this.props.sendContact(contact);
   }
 
   numberUpdateHandler(event) {
     this.setState({
       number: event.target.value
     });
+
+    let contact = this.createDefaultContact();
+    contact.number = event.target.value;
+
+    this.props.sendContact(contact);
   }
 
   render() {
@@ -49,6 +76,7 @@ class SingleContact extends React.Component {
           value={this.props.contact.firstname}
           className={classes.textfield}
           disabled={this.props.isDisabled}
+          onChange={this.firstnameUpdateHandler}
         />
         <TextField
           id="standard-name"
@@ -57,6 +85,7 @@ class SingleContact extends React.Component {
           value={this.props.contact.lastname}
           className={classes.textfield}
           disabled={this.props.isDisabled}
+          onChange={this.lastnameUpdateHandler}
         />
         <TextField
           required
@@ -66,6 +95,7 @@ class SingleContact extends React.Component {
           value={this.props.contact.number}
           className={classes.textfield}
           disabled={this.props.isDisabled}
+          onChange={this.numberUpdateHandler}
           />
       </DialogContent>
     );

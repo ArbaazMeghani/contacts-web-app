@@ -39,6 +39,7 @@ export default class ViewSingleContact extends React.Component {
   }
 
   setContact(newContact) {
+    console.log(newContact);
     this.setState({
       contact: newContact,
     });
