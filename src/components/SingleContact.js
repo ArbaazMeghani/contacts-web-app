@@ -1,43 +1,61 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/styles';
 import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 
-const styles = makeStyles({
+const styles = {
   textfield: {
     margin: 10
   }
-});
+};
 
-export default function SingleContact({ contact, isDisabled}) {
-  const classes = styles();
-  return (
-    <DialogContent>
-      <TextField
-        id="standard-name"
-        label="First Name"
-        margin="normal"
-        value={contact.firstname}
-        className={classes.textfield}
-        disabled={isDisabled}
-      />
-      <TextField
-        id="standard-name"
-        label="Last Name"
-        margin="normal"
-        value={contact.lastname}
-        className={classes.textfield}
-        disabled={isDisabled}
-      />
-      <TextField
-        required
-        id="standard-required"
-        label="Phone Number"
-        margin="normal"
-        value={contact.number}
-        className={classes.textfield}
-        disabled={isDisabled}
-      />
-    </DialogContent>
-  );
+class SingleContact extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstname: this.props.firstname,
+      lastname: this.props.lastname,
+      number: this.props.number
+    }
+  }
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <DialogContent>
+        <TextField
+          id="standard-name"
+          label="First Name"
+          margin="normal"
+          value={this.props.contact.firstname}
+          className={classes.textfield}
+          disabled={this.props.isDisabled}
+        />
+        <TextField
+          id="standard-name"
+          label="Last Name"
+          margin="normal"
+          value={this.props.contact.lastname}
+          className={classes.textfield}
+          disabled={this.props.isDisabled}
+        />
+        <TextField
+          required
+          id="standard-required"
+          label="Phone Number"
+          margin="normal"
+          value={this.props.contact.number}
+          className={classes.textfield}
+          disabled={this.props.isDisabled}
+          />
+      </DialogContent>
+    );
+  }
 }
+
+SingleContact.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(SingleContact);
