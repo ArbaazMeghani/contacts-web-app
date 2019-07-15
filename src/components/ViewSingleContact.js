@@ -18,6 +18,14 @@ export default class ViewSingleContact extends React.Component {
     this.setContact = this.setContact.bind(this);
   }
 
+  componentWillReceiveProps(nextProps){
+    if(nextProps.contact !== this.props.contact){
+      this.setState({
+        contact: nextProps.contact
+      });
+    }
+  }
+
   disabledStateUpdate() {
     this.setState(prevState => ({
       isDisabled: !prevState.isDisabled,
@@ -72,7 +80,7 @@ export default class ViewSingleContact extends React.Component {
     return (
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
         <form onSubmit={() => this.saveContact()}>
-          <SingleContact contact={this.props.contact} isDisabled={this.state.isDisabled} sendContact={this.setContact}/>
+          <SingleContact contact={this.state.contact} isDisabled={this.state.isDisabled} sendContact={this.setContact}/>
           <DialogActions>
             <Button variant="outlined" color="secondary" onClick={() => this.closeDialog()}>
                 {this.state.canceledText}

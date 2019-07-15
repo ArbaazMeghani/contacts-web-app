@@ -10,7 +10,11 @@ export default class NewContactForm extends React.Component {
     super(props);
     this.setContact = this.setContact.bind(this);
     this.state = {
-      contact: {}
+      contact: {
+        firstname: "",
+        lastname: "",
+        number: ""
+      }
     };
   }
 
@@ -31,7 +35,7 @@ export default class NewContactForm extends React.Component {
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
         <DialogTitle id="simple-dialog-title"> Create a New Contact </DialogTitle>
         <form onSubmit={() => this.submitNewContactHandler()}>
-          <SingleContact contact={{}} isDisabled={false} sendContact={this.setContact}/>
+          <SingleContact contact={this.state.contact} isDisabled={false} sendContact={this.setContact}/>
           <DialogActions>
             <Button variant="outlined" color="secondary" onClick={() => this.props.onClose()}>
               Cancel

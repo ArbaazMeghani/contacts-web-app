@@ -13,11 +13,6 @@ const styles = {
 class SingleContact extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      firstname: "",
-      lastname: "",
-      number: ""
-    }
 
     this.firstnameUpdateHandler = this.firstnameUpdateHandler.bind(this);
     this.lastnameUpdateHandler = this.lastnameUpdateHandler.bind(this);
@@ -26,17 +21,13 @@ class SingleContact extends React.Component {
 
   createDefaultContact() {
     let contact = {};
-    contact.firstname = this.state.firstname;
-    contact.lastname = this.state.lastname;
-    contact.number = this.state.number;
+    contact.firstname = this.props.contact.firstname;
+    contact.lastname = this.props.contact.lastname;
+    contact.number = this.props.contact.number;
     return contact;
   }
 
   firstnameUpdateHandler(event) {
-    this.setState({
-      firstname: event.target.value
-    });
-
     let contact = this.createDefaultContact();
     contact.firstname = event.target.value;
 
@@ -44,10 +35,6 @@ class SingleContact extends React.Component {
   }
 
   lastnameUpdateHandler(event) {
-    this.setState({
-      lastname: event.target.value
-    });
-
     let contact = this.createDefaultContact();
     contact.lastname = event.target.value;
 
@@ -55,10 +42,6 @@ class SingleContact extends React.Component {
   }
 
   numberUpdateHandler(event) {
-    this.setState({
-      number: event.target.value
-    });
-
     let contact = this.createDefaultContact();
     contact.number = event.target.value;
 
