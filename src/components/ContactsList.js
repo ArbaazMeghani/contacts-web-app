@@ -17,7 +17,7 @@ export default class ContactsList extends React.Component {
   }
 
   async componentDidMount() {
-    let res = await Axios.get("https://contacts-rest-api.herokuapp.com/api/v1/contacts")
+    let res = await Axios.get("https://contacts-rest-api.herokuapp.com/api/v1/contacts");
     this.setState({contacts: res.data});
   }
 

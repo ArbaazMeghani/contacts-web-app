@@ -19,8 +19,9 @@ export default class NewContactForm extends React.Component {
     };
   }
 
-  submitNewContactHandler() {
-    console.log("Submitted Contact");
+  async submitNewContactHandler() {
+    let res = await Axios.post("https://contacts-rest-api.herokuapp.com/api/v1/contacts", this.state.contact);
+    console.log(res);
     this.props.onClose();
   }
 
