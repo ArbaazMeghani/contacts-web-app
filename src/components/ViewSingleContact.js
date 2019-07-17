@@ -1,5 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import SingleContact from './SingleContact';
@@ -7,7 +9,11 @@ import { DialogActions } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 
-export default class ViewSingleContact extends React.Component {
+const styles = {
+
+};
+
+class ViewSingleContact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -101,3 +107,9 @@ export default class ViewSingleContact extends React.Component {
     );
   }
 }
+
+ViewSingleContact.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(ViewSingleContact);
