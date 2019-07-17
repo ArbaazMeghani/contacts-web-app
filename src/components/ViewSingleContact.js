@@ -5,12 +5,17 @@ import { withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import SingleContact from './SingleContact';
-import { DialogActions } from '@material-ui/core';
+import { DialogActions, DialogTitle, IconButton } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = {
-
+  closeIconButton: {
+    position: "absolute",
+    right: 0,
+    top: 0
+  }
 };
 
 class ViewSingleContact extends React.Component {
@@ -92,13 +97,19 @@ class ViewSingleContact extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
         <form onSubmit={this.saveContact}>
+          <DialogTitle>
+            <IconButton className={classes.closeIconButton}>
+              <CloseIcon onClick={() => this.closeDialog()}/>
+            </IconButton>
+          </DialogTitle>
           <SingleContact contact={this.state.contact} isDisabled={this.state.isDisabled} sendContact={this.setContact}/>
           <DialogActions>
             <Button variant="outlined" color="secondary" onClick={() => this.closeDialog()}>
-                {this.state.canceledText}
+              {this.state.canceledText}
             </Button>
             {this.formButton()}
           </DialogActions>
