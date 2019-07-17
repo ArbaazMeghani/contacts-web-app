@@ -1,24 +1,14 @@
 import React from 'react';
 import Axios from 'axios';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import SingleContact from './SingleContact';
-import { DialogActions, DialogTitle, IconButton } from '@material-ui/core';
+import { DialogActions } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
-import CloseIcon from '@material-ui/icons/Close';
+import CustomDialogTitle from './CustomDialogTitle';
 
-const styles = {
-  closeIconButton: {
-    position: "absolute",
-    right: 0,
-    top: 0
-  }
-};
-
-class ViewSingleContact extends React.Component {
+export default class ViewSingleContact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,6 +19,7 @@ class ViewSingleContact extends React.Component {
 
     this.setContact = this.setContact.bind(this);
     this.saveContact = this.saveContact.bind(this);
+    this.closeDialog = this.closeDialog.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
@@ -97,15 +88,10 @@ class ViewSingleContact extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
         <form onSubmit={this.saveContact}>
-          <DialogTitle>
-            <IconButton className={classes.closeIconButton}>
-              <CloseIcon onClick={() => this.closeDialog()}/>
-            </IconButton>
-          </DialogTitle>
+          <CustomDialogTitle onClickHandler={this.closeDialog}/>
           <SingleContact contact={this.state.contact} isDisabled={this.state.isDisabled} sendContact={this.setContact}/>
           <DialogActions>
             <Button variant="outlined" color="secondary" onClick={() => this.closeDialog()}>
@@ -118,9 +104,3 @@ class ViewSingleContact extends React.Component {
     );
   }
 }
-
-ViewSingleContact.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(ViewSingleContact);

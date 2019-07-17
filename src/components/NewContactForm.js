@@ -2,9 +2,9 @@ import React from 'react';
 import Axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import SingleContact from './SingleContact';
+import CustomDialogTitle from './CustomDialogTitle';
 
 export default class NewContactForm extends React.Component {
   constructor(props) {
@@ -35,8 +35,8 @@ export default class NewContactForm extends React.Component {
   render() {
     return (
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
-        <DialogTitle id="simple-dialog-title"> Create a New Contact </DialogTitle>
         <form onSubmit={() => this.submitNewContactHandler()}>
+          <CustomDialogTitle onClickHandler={this.props.onClose} titleText={"Create a New Contact"}/>
           <SingleContact contact={this.state.contact} isDisabled={false} sendContact={this.setContact}/>
           <DialogActions>
             <Button variant="outlined" color="secondary" onClick={() => this.props.onClose()}>
