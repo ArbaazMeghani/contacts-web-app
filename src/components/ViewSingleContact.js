@@ -1,4 +1,5 @@
 import React from 'react';
+import Axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import SingleContact from './SingleContact';
@@ -16,6 +17,7 @@ export default class ViewSingleContact extends React.Component {
     };
 
     this.setContact = this.setContact.bind(this);
+    this.saveContact = this.saveContact.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
@@ -41,12 +43,19 @@ export default class ViewSingleContact extends React.Component {
     });
   }
 
-  saveContact() {
-    console.log("Saving Contact");
-    this.closeDialog();
+  saveContact(event) {
+    event.preventDefault();
+    console.log(this.props.contact.number);
+    Axios.put(`https://contacts-rest-api.herokuapp.com/api/v1/contacts/${this.props.contact.number}`,
+      this.state.contact)
+      .then(res => {
+        console.log(res);
+        window.location.reload();
+      });
   }
 
   setContact(newContact) {
+    console.log(this.props.contact.number);
     console.log(newContact);
     this.setState({
       contact: newContact,
@@ -56,7 +65,7 @@ export default class ViewSingleContact extends React.Component {
   editButton() {
     return (
       <Fab color="secondary" aria-label="Edit" onClick={() => this.disabledStateUpdate()}>
-            <EditIcon />
+        <EditIcon />
       </Fab>
     );
   }
@@ -79,7 +88,7 @@ export default class ViewSingleContact extends React.Component {
   render() {
     return (
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
-        <form onSubmit={() => this.saveContact()}>
+        <form onSubmit={this.saveContact}>
           <SingleContact contact={this.state.contact} isDisabled={this.state.isDisabled} sendContact={this.setContact}/>
           <DialogActions>
             <Button variant="outlined" color="secondary" onClick={() => this.closeDialog()}>
