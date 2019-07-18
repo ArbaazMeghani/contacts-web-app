@@ -41,7 +41,7 @@ export default class ViewSingleContact extends React.Component {
     this.props.onClose();
     this.setState({
       isDisabled: true,
-      canceledText: "Close"
+      canceledText: "Delete"
     });
   }
 
@@ -80,11 +80,26 @@ export default class ViewSingleContact extends React.Component {
     );
   }
 
-  formButton() {
+  deleteButton() {
+
+  }
+
+  closeButton() {
+    
+  }
+
+  formPrimaryButton() {
     if(this.state.isDisabled) {
       return this.editButton();
     }
     return this.saveButton();
+  }
+
+  formSecondaryButton() {
+    if(this.state.isDisabled) {
+      return this.deleteButton();
+    }
+    return this.closeButton();
   }
 
   render() {
@@ -94,10 +109,8 @@ export default class ViewSingleContact extends React.Component {
           <CustomDialogTitle onClickHandler={this.closeDialog}/>
           <SingleContact contact={this.state.contact} isDisabled={this.state.isDisabled} sendContact={this.setContact}/>
           <DialogActions>
-            <Button variant="outlined" color="secondary" onClick={() => this.closeDialog()}>
-              {this.state.canceledText}
-            </Button>
-            {this.formButton()}
+            {this.formSecondaryButton()}
+            {this.formPrimaryButton()}
           </DialogActions>
         </form>
       </Dialog>
