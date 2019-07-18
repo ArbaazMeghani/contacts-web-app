@@ -16,6 +16,10 @@ export default class ViewSingleContact extends React.Component {
       contact: {}
     };
 
+    this.bindHandlers();
+  }
+
+  bindHandlers() {
     this.setContact = this.setContact.bind(this);
     this.saveContact = this.saveContact.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
