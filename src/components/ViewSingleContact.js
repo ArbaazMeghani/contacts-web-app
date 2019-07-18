@@ -13,7 +13,6 @@ export default class ViewSingleContact extends React.Component {
     super(props);
     this.state = {
       isDisabled: true,
-      canceledText: "Close",
       contact: {}
     };
 
@@ -33,7 +32,6 @@ export default class ViewSingleContact extends React.Component {
   disabledStateUpdate() {
     this.setState(prevState => ({
       isDisabled: !prevState.isDisabled,
-      canceledText: "Cancel"
     }));
   }
 
@@ -41,7 +39,6 @@ export default class ViewSingleContact extends React.Component {
     this.props.onClose();
     this.setState({
       isDisabled: true,
-      canceledText: "Delete"
     });
   }
 
@@ -80,12 +77,24 @@ export default class ViewSingleContact extends React.Component {
     );
   }
 
-  deleteButton() {
+  deleteContactHandler() {
 
   }
 
-  closeButton() {
-    
+  deleteButton() {
+    return (
+      <Button variant="outlined" color="secondary" onClick={this.deleteContactHandler}>
+        Delete
+      </Button>
+    );
+  }
+
+  cancelButton() {
+    return (
+      <Button variant="outlined" color="secondary" onClick={this.closeDialog}>
+        Cancel
+      </Button>
+    );
   }
 
   formPrimaryButton() {
@@ -99,7 +108,7 @@ export default class ViewSingleContact extends React.Component {
     if(this.state.isDisabled) {
       return this.deleteButton();
     }
-    return this.closeButton();
+    return this.cancelButton();
   }
 
   render() {
