@@ -19,6 +19,7 @@ export default class ViewSingleContact extends React.Component {
     this.setContact = this.setContact.bind(this);
     this.saveContact = this.saveContact.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
+    this.deleteContactHandler = this.deleteContactHandler.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
@@ -77,8 +78,13 @@ export default class ViewSingleContact extends React.Component {
     );
   }
 
-  deleteContactHandler() {
-
+  deleteContactHandler(event) {
+    event.preventDefault();
+    Axios.delete(`https://contacts-rest-api.herokuapp.com/api/v1/contacts/${this.props.contact.number}`)
+    .then(res => {
+      console.log(res);
+      window.location.reload();
+    });
   }
 
   deleteButton() {
