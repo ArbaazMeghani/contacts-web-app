@@ -17,7 +17,7 @@ const styles = makeStyles({
 export default function NewContactFab({onClickHandler}) {
   const classes = styles();
   return (
-    <Fab color="primary" aria-label="Add" onClick={() => onClickHandler()} className={classes.fab}>
+    <Fab color="primary" aria-label="Add" onClick={onClickHandler} className={classes.fab}>
       <AddIcon />
     </Fab>
   );
