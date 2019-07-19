@@ -52,14 +52,12 @@ export default class ViewSingleContact extends React.Component {
     window.location.reload();
   }
 
-  saveContact(event) {
+  async saveContact(event) {
     event.preventDefault();
     console.log(this.props.contact.number);
-    Axios.put(`https://contacts-rest-api.herokuapp.com/api/v1/contacts/${this.props.contact.number}`,
-      this.state.contact)
-      .then(res => {
-        this.postAxiosCall(res);
-      });
+    let res = await Axios.put(`https://contacts-rest-api.herokuapp.com/api/v1/contacts/${this.props.contact.number}`,
+      this.state.contact);
+    this.postAxiosCall(res);
   }
 
   setContact(newContact) {
@@ -86,12 +84,10 @@ export default class ViewSingleContact extends React.Component {
     );
   }
 
-  deleteContactHandler(event) {
+  async deleteContactHandler(event) {
     event.preventDefault();
-    Axios.delete(`https://contacts-rest-api.herokuapp.com/api/v1/contacts/${this.props.contact.number}`)
-    .then(res => {
-      this.postAxiosCall(res);
-    });
+    let res = await Axios.delete(`https://contacts-rest-api.herokuapp.com/api/v1/contacts/${this.props.contact.number}`);
+    this.postAxiosCall(res);
   }
 
   deleteButton() {
