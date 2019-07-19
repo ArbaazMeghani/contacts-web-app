@@ -47,14 +47,18 @@ export default class ViewSingleContact extends React.Component {
     });
   }
 
+  postAxiosCall(res) {
+    console.log(res);
+    window.location.reload();
+  }
+
   saveContact(event) {
     event.preventDefault();
     console.log(this.props.contact.number);
     Axios.put(`https://contacts-rest-api.herokuapp.com/api/v1/contacts/${this.props.contact.number}`,
       this.state.contact)
       .then(res => {
-        console.log(res);
-        window.location.reload();
+        this.postAxiosCall(res);
       });
   }
 
@@ -86,8 +90,7 @@ export default class ViewSingleContact extends React.Component {
     event.preventDefault();
     Axios.delete(`https://contacts-rest-api.herokuapp.com/api/v1/contacts/${this.props.contact.number}`)
     .then(res => {
-      console.log(res);
-      window.location.reload();
+      this.postAxiosCall(res);
     });
   }
 
