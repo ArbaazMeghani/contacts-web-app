@@ -1,12 +1,17 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import { AppBar, Toolbar } from '@material-ui/core';
 
 function Header({ title }) {
   return (
     <header>
-      <Typography align="center" variant="h6"> {title} </Typography>
-      <Divider />
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">
+            Contacts List
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <br />
     </header>
   );
