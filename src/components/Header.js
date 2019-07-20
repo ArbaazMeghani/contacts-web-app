@@ -8,7 +8,7 @@ function Header({ title }) {
       <AppBar position="static" color="secondary">
         <Toolbar>
           <Typography variant="h6">
-            Contacts List
+            {title}
           </Typography>
         </Toolbar>
       </AppBar>

@@ -6,7 +6,7 @@ import Footer from './Footer';
 function App() {
   return (
     <div className="App">
-      <Header title="Contacts List Application" />
+      <Header title="Contacts List" />
       <Body />
       <Footer author="Arbaaz Meghani" source="https://github.com/ArbaazMeghani/contacts-web-app"/>
     </div>
