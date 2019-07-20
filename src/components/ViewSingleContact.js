@@ -7,7 +7,7 @@ import { DialogActions } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import CustomDialogTitle from './CustomDialogTitle';
-import PostAxiosCall from '../utils/PostAxiosCall';
+import postAxiosCall from '../utils/PostAxiosCall';
 
 export default class ViewSingleContact extends React.Component {
   constructor(props) {
@@ -53,7 +53,7 @@ export default class ViewSingleContact extends React.Component {
     console.log(this.props.contact.number);
     let res = await Axios.put(`https://contacts-rest-api.herokuapp.com/api/v1/contacts/${this.props.contact.number}`,
       this.state.contact);
-    PostAxiosCall(res);
+    postAxiosCall(res);
   }
 
   setContact(newContact) {
@@ -83,7 +83,7 @@ export default class ViewSingleContact extends React.Component {
   async deleteContactHandler(event) {
     event.preventDefault();
     let res = await Axios.delete(`https://contacts-rest-api.herokuapp.com/api/v1/contacts/${this.props.contact.number}`);
-    PostAxiosCall(res);
+    postAxiosCall(res);
   }
 
   deleteButton() {

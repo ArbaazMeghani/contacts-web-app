@@ -5,6 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import SingleContact from './SingleContact';
 import CustomDialogTitle from './CustomDialogTitle';
+import postAxiosCall from '../utils/PostAxiosCall';
 
 export default class NewContactForm extends React.Component {
   constructor(props) {
@@ -19,10 +20,10 @@ export default class NewContactForm extends React.Component {
     };
   }
 
-  async submitNewContactHandler() {
+  async submitNewContactHandler(event) {
+    event.preventDefault();
     let res = await Axios.post("https://contacts-rest-api.herokuapp.com/api/v1/contacts", this.state.contact);
-    console.log(res);
-    this.props.onClose();
+    postAxiosCall(res);
   }
 
   setContact(newContact) {
@@ -35,7 +36,7 @@ export default class NewContactForm extends React.Component {
   render() {
     return (
       <Dialog open={this.props.open} aria-labelledby="simple-dialog-title">
-        <form onSubmit={() => this.submitNewContactHandler()}>
+        <form onSubmit={event => this.submitNewContactHandler(event)}>
           <CustomDialogTitle onClickHandler={this.props.onClose} titleText={"Create a New Contact"}/>
           <SingleContact contact={this.state.contact} isDisabled={false} sendContact={this.setContact}/>
           <DialogActions>
