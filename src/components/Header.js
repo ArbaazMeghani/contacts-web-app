@@ -5,7 +5,7 @@ import { AppBar, Toolbar } from '@material-ui/core';
 function Header({ title }) {
   return (
     <header>
-      <AppBar position="static">
+      <AppBar position="static" color="secondary">
         <Toolbar>
           <Typography variant="h6">
             Contacts List
